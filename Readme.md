@@ -1,9 +1,3 @@
-const fs = require('fs');
-
-const content = `# Meeting Summarizer - Batch 2026
-
-An AI-powered meeting transcription and summarization tool that converts audio recordings into actionable insights.
-
 ## 🎯 Features
 
 - **Audio Transcription**: Automatic speech-to-text using Whisper AI
