@@ -258,7 +258,6 @@ Format each item on a new line starting with a dash (-).
 }
 ```
 
-## 🎓 Batch 2026 Project
 
 **Author**: Koushil  
 **Registration Number**: 22BCE20463
