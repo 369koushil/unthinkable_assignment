@@ -31,7 +31,6 @@ export default function MeetingSummarizer() {
 
   const handleSubmit = async () => {
     if (!file) return;
-
     setLoading(true);
     setError(null);
     setProgress('Uploading audio...');
@@ -44,9 +43,7 @@ export default function MeetingSummarizer() {
         method: 'POST',
         body: formData,
       });
-
       if (!response.ok) throw new Error('Failed to process audio');
-
       const data = await response.json();
       setResult(data);
       setProgress('');
@@ -59,26 +56,18 @@ export default function MeetingSummarizer() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      {/* Watermark */}
-
-      <div className="container mx-auto px-4 py-12 max-w-5xl">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-3 tracking-tight">
-            Meeting Summarizer
-          </h1>
-          <p className="text-blue-200 text-lg">
-            AI-powered transcription & intelligent summary generation
-          </p>
+    <div className="min-h-screen bg-black text-white flex flex-col items-center px-4 py-12">
+      <div className="w-full max-w-3xl space-y-10">
+        <div className="text-center space-y-2">
+          <h1 className="text-4xl font-semibold tracking-tight">Meeting Summarizer</h1>
+          <p className="text-gray-400">Transcribe & summarize your meetings effortlessly</p>
         </div>
 
-        {/* Upload Section */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 mb-8 border border-white/20 shadow-2xl">
+        <div className="border border-gray-800 rounded-lg p-8 bg-neutral-950">
           <div
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
-            className="border-2 border-dashed border-blue-300/50 rounded-xl p-12 text-center hover:border-blue-400 transition-colors cursor-pointer bg-white/5"
+            className="border-2 border-dashed border-gray-700 rounded-lg p-10 text-center hover:border-gray-500 transition-colors cursor-pointer"
           >
             <input
               type="file"
@@ -87,14 +76,12 @@ export default function MeetingSummarizer() {
               className="hidden"
               id="audio-upload"
             />
-            <label htmlFor="audio-upload" className="cursor-pointer">
-              <FileAudio className="mx-auto mb-4 text-blue-300" size={48} />
-              <p className="text-white text-lg mb-2">
-                {file ? file.name : 'Drop audio file here or click to upload'}
+            <label htmlFor="audio-upload" className="cursor-pointer space-y-2 block">
+              <FileAudio className="mx-auto text-gray-400" size={40} />
+              <p className="text-gray-200 text-sm">
+                {file ? file.name : 'Click or drag an audio file here'}
               </p>
-              <p className="text-blue-200 text-sm">
-                Supports MP3, WAV, M4A, and other audio formats
-              </p>
+              <p className="text-gray-500 text-xs">Supports MP3, WAV, M4A, WEBM</p>
             </label>
           </div>
 
@@ -102,16 +89,16 @@ export default function MeetingSummarizer() {
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className="w-full mt-6 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
+              className="w-full mt-6 bg-white text-black hover:bg-gray-200 disabled:bg-gray-800 disabled:text-gray-500 font-medium py-3 rounded-md transition flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
-                  <Loader2 className="animate-spin" size={20} />
+                  <Loader2 className="animate-spin" size={18} />
                   {progress || 'Processing...'}
                 </>
               ) : (
                 <>
-                  <Upload size={20} />
+                  <Upload size={18} />
                   Process Meeting
                 </>
               )}
@@ -119,65 +106,54 @@ export default function MeetingSummarizer() {
           )}
 
           {error && (
-            <div className="mt-4 bg-red-500/20 border border-red-500/50 rounded-lg p-4 flex items-center gap-3">
-              <AlertCircle className="text-red-300" size={20} />
-              <p className="text-red-200">{error}</p>
+            <div className="mt-4 border border-red-500/50 rounded-md p-4 flex items-center gap-2 text-red-400 bg-red-500/10">
+              <AlertCircle size={18} />
+              <p className="text-sm">{error}</p>
             </div>
           )}
         </div>
 
-        {/* Results Section */}
         {result && (
           <div className="space-y-6">
-            {/* Transcript */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
-              <div className="flex items-center gap-3 mb-4">
-                <FileAudio className="text-blue-300" size={24} />
-                <h2 className="text-2xl font-bold text-white">Transcript</h2>
+            <div className="border border-gray-800 rounded-lg p-6 bg-neutral-950">
+              <div className="flex items-center gap-2 mb-3">
+                <FileAudio size={20} className="text-gray-400" />
+                <h2 className="text-lg font-semibold">Transcript</h2>
               </div>
-              <div className="bg-black/30 rounded-lg p-6 max-h-64 overflow-y-auto">
-                <p className="text-gray-200 leading-relaxed whitespace-pre-wrap">
-                  {result.transcript}
-                </p>
+              <div className="text-sm text-gray-300 leading-relaxed whitespace-pre-wrap max-h-64 overflow-y-auto">
+                {result.transcript}
               </div>
             </div>
 
-            {/* Summary */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
-              <div className="flex items-center gap-3 mb-4">
-                <Clock className="text-green-300" size={24} />
-                <h2 className="text-2xl font-bold text-white">Summary</h2>
+            <div className="border border-gray-800 rounded-lg p-6 bg-neutral-950">
+              <div className="flex items-center gap-2 mb-3">
+                <Clock size={20} className="text-gray-400" />
+                <h2 className="text-lg font-semibold">Summary</h2>
               </div>
-              <div className="bg-black/30 rounded-lg p-6">
-                <p className="text-gray-200 leading-relaxed whitespace-pre-wrap">
-                  {result.summary}
-                </p>
+              <div className="text-sm text-gray-300 leading-relaxed whitespace-pre-wrap">
+                {result.summary}
               </div>
             </div>
 
-            {/* Action Items */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
-              <div className="flex items-center gap-3 mb-4">
-                <CheckCircle className="text-yellow-300" size={24} />
-                <h2 className="text-2xl font-bold text-white">Action Items</h2>
+            <div className="border border-gray-800 rounded-lg p-6 bg-neutral-950">
+              <div className="flex items-center gap-2 mb-3">
+                <CheckCircle size={20} className="text-gray-400" />
+                <h2 className="text-lg font-semibold">Action Items</h2>
               </div>
-              <div className="bg-black/30 rounded-lg p-6">
-                <ul className="space-y-3">
-                  {result.actionItems.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <span className="text-yellow-300 mt-1">▸</span>
-                      <span className="text-gray-200">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="text-sm text-gray-300 space-y-2">
+                {result.actionItems.map((item, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-gray-500 mt-1">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         )}
 
-        {/* Footer Watermark */}
-        <div className="text-center mt-12 text-blue-300/60 text-sm">
-          <p>Build by koushil| Meeting Summarizer Project</p>
+        <div className="text-center text-gray-600 text-sm pt-6 border-t border-gray-900">
+          Built with ❤️ by Koushil
         </div>
       </div>
     </div>
