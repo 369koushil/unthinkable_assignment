@@ -1,4 +1,4 @@
-# Meeting Summarizer - Batch 2026
+# Meeting Summarizer
 
 An AI-powered meeting transcription and summarization tool that converts audio recordings into actionable insights.
 
