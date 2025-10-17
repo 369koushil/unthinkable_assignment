@@ -20,6 +20,7 @@
     "multer": "^2.0.2",
     "node-fetch": "^3.3.2",
     "nodemon": "^3.1.10",
+    "sqlite3": "^5.1.7",
     "wavefile": "^11.0.0"
   }
 }
