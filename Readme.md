@@ -19,7 +19,7 @@ An AI-powered meeting transcription and summarization tool that converts audio r
 
 **Backend:**
 - Node.js + Express
-- Transformers.js (Whisper model)
+- Google ASR API(online) / Transformers.js (offline)
 - LM Studio (phi-3-mini-4k-instruct for summarization)
 - Multer (file uploads)
 
