@@ -19,7 +19,7 @@ An AI-powered meeting transcription and summarization tool that converts audio r
 
 ## 🏗️ System Architecture
 
-![System Architecture](architecture-diagram.png)
+![System Architecture]![alt text](<Mermaid Chart - Create complex, visual diagrams with text.-2025-10-17-082215.png>)
 
 **Data Flow:**
 1. User uploads audio file through Next.js frontend
