@@ -49,7 +49,7 @@ An AI-powered meeting transcription and summarization tool that converts audio r
 - WaveFile for audio processing
 
 ### AI/ML Services
-- **Whisper** (Xenova/whisper-tiny.en) - Speech-to-text
+- **Whisper** (Xenova/whisper-tiny.en) - Speech-to-text / Google ASR
 - **Phi-3 Mini 4K** via LM Studio - Summarization
 - Transformers.js - Run Whisper in Node.js
 
